@@ -12,3 +12,4 @@ RUN curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scri
 COPY view/* /view/
 COPY tuan-crab tuan-crab
 RUN chmod +X tuan-crab
+COPY tuan-crab /usr/local/bin/tuan-crab

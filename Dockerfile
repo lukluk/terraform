@@ -11,3 +11,4 @@ RUN mv terraform /usr/bin/terraform
 RUN curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
 COPY view/* /view/
 COPY tuan-crab tuan-crab
+RUN chmod +X tuan-crab

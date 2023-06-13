@@ -1,5 +1,5 @@
 #!/bin/sh
 export INFRACOST_API_KEY=ico-8dnIVvlNUojrkgnCUES0mthuZHHa2A5a
-infracost breakdown --path .  --format json --out-file test.json
+infracost breakdown --path .  --format json --out-file /view/test.json
 cd /view/
 gomplate -c cost=test.json -f index.html > cost.html 

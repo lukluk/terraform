@@ -1,0 +1,71 @@
+
+{{file.Read "header.html"}}
+<h3> Tuan Krabs <span class="badge bg-secondary">{{ .cost.metadata.vcsBranch }}</span> / {{ .cost.metadata.vcsCommitSha }}</h3>
+<center><img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs.svg/440px-Mr._Krabs.svg.png" width="50px"/></center>
+<br>
+<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Resource</th>
+			<th>Hourly Cost</th>			
+			<th>Monthly Cost</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{ range $index, $item := (index .cost.projects 0).breakdown.resources }}
+		<tr id="tr-detail{{$index}}" class="tr-detail hidden">
+			<td></td>
+			<td colspan="4">
+				<div class="detail-content">
+					<ul>
+						<li>
+							<div class="detail"></div>
+
+							<div class="detail detail-main">
+								<fieldset>
+									<legend><span class="label label-primary">Nested Data</span></legend>
+									<div>
+										<table class="table table-condensed">
+											<thead>
+												<tr>
+													<th>Resource</th>
+													<th>Unit</th>
+													<th>Price</th>													
+													<th>Hourly Cost</th>
+													<th>Monthly Cost</th>
+												</tr>
+											</thead>
+											{{ range $index, $a := $item.costComponents }}
+											<tr>
+												<td>{{ $a.name }}</td>
+												<td>{{ $a.unit }}</td>										
+												<td>{{ $a.price }}</td>
+												<td>{{ $a.hourlyCost }}</td>
+												<td>{{ $a.monthlyCost }}</td>
+											</tr>	
+											{{- end }}										
+										</table>
+									</div>
+								</fieldset>								
+							</div>
+						</li>						
+					</ul>
+				</div>
+			</td>
+		</tr>
+		{{- end }}	
+		{{ range $index, $item := (index .cost.projects 0).breakdown.resources }}
+		<tr data="{{$index}}">
+			<td><span class="fa fa-chevron-right fa-fw"></span> </td>
+			<td>{{ $item.metadata.filename }}/{{ $item.name }}</td>			
+			<td>{{ $item.hourlyCost }}<i class="bi bi-currency-dollar"></i></td>			
+			<td>{{ $item.monthlyCost }} <i class="bi bi-currency-dollar"></i></td>
+		</tr>
+		{{- end }}		
+	</tbody>
+</table>
+
+
+
+{{file.Read "footer.html"}}

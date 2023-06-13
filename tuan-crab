@@ -3,3 +3,4 @@ export INFRACOST_API_KEY=ico-8dnIVvlNUojrkgnCUES0mthuZHHa2A5a
 infracost breakdown --path $1  --format json --out-file /view/test.json
 cd /view/
 gomplate -c cost=test.json -f index.html > /view/cost.html 
+cat /view/cost.html
